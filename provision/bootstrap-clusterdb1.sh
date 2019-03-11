@@ -1,6 +1,9 @@
 # Copy APT repositories
 sudo cp '/vagrant/config/sources.list' '/etc/apt/sources.list'
 
+# Update repositories
+sudo apt-get update -y
+
 #configure cluster manager
 cd ~
 wget https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster-community-management-server_7.6.6-1ubuntu18.04_amd64.deb
@@ -17,5 +20,20 @@ sudo systemctl status ndb_mgmd
 sudo ufw allow from 192.168.33.12
 sudo ufw allow from 192.168.33.13
 
-# Update repositories
-sudo apt-get update -y
+#configuring and starting mysql server & client
+wget https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster_7.6.6-1ubuntu18.04_amd64.deb-bundle.tar
+mkdir install
+tar -xvf mysql-cluster_7.6.6-1ubuntu18.04_amd64.deb-bundle.tar -C install/
+cd install
+sudo apt update
+sudo apt install libaio1 libmecab2
+
+sudo dpkg -i mysql-common_7.6.6-1ubuntu18.04_amd64.deb
+sudo dpkg -i mysql-cluster-community-client_7.6.6-1ubuntu18.04_amd64.deb
+sudo dpkg -i mysql-client_7.6.6-1ubuntu18.04_amd64.deb
+sudo dpkg -i mysql-cluster-community-server_7.6.6-1ubuntu18.04_amd64.deb
+
+sudo dpkg -i mysql-server_7.6.6-1ubuntu18.04_amd64.deb
+sudo cp '/vagrant/config/servicenode/my.cnf' '/etc/mysql/my.cnf'
+sudo systemctl restart mysql
+sudo systemctl enable mysql

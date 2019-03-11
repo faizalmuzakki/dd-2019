@@ -1,6 +1,9 @@
 # Copy APT repositories
 sudo cp '/vagrant/config/sources.list' '/etc/apt/sources.list'
 
+# Update repositories
+sudo apt-get update -y
+
 #configure cluster manager
 cd ~
 wget https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster-community-data-node_7.6.6-1ubuntu18.04_amd64.deb
@@ -8,9 +11,9 @@ sudo apt update
 wget http://archive.ubuntu.com/ubuntu/pool/main/p/perl/perl-base_5.22.1-9_amd64.deb
 sudo dpkg -i perl-base_5.22.1-9_amd64.deb
 sudo apt install libclass-methodmaker-perl
-sudo apt --fix-broken install
+sudo apt --fix-broken install -y
 sudo apt install libclass-methodmaker-perl
-sudo apt --fix-broken install
+sudo apt --fix-broken install -y
 sudo apt install libclass-methodmaker-perl
 sudo dpkg -i mysql-cluster-community-data-node_7.6.6-1ubuntu18.04_amd64.deb
 sudo cp '/vagrant/config/datanode/my.cnf' '/etc/my.cnf'
@@ -24,6 +27,3 @@ sudo systemctl daemon-reload
 sudo systemctl enable ndbd
 sudo systemctl start ndbd
 sudo systemctl status ndbd
-
-# Update repositories
-# sudo apt-get update -y
