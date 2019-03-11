@@ -10,14 +10,14 @@ Vagrant.configure("2") do |config|
 
       # Opsional. Edit sesuai dengan nama network adapter di komputer
       # node.vm.network "public_network", bridge: "Qualcomm Atheros QCA9377 Wireless Network Adapter"
-      
+
       node.vm.provider "virtualbox" do |vb|
         vb.name = "clusterdb#{i}"
         vb.gui = false
         vb.memory = "1024"
       end
 
-      node.vm.provision "shell", path: "provision/bootstrap.sh", privileged: false
+      node.vm.provision "shell", path: "provision/bootstrap-clusterdb#{i}.sh", privileged: false
     end
   end
 end
