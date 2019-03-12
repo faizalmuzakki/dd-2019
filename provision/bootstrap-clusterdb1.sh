@@ -37,3 +37,19 @@ sudo dpkg -i mysql-server_7.6.6-1ubuntu18.04_amd64.deb
 sudo cp '/vagrant/config/servicenode/my.cnf' '/etc/mysql/my.cnf'
 sudo systemctl restart mysql
 sudo systemctl enable mysql
+
+sudo cp '/vagrant/sample_db.sql' '~/sample_db.sql'
+mysql -u root -p root < sample_db.sql
+
+#set proxysql
+curl -OL https://gist.github.com/lefred/77ddbde301c72535381ae7af9f968322/raw/5e40b03333a3c148b78aa348fd2cd5b5dbb36e4d/addition_to_sys.sql
+mysql -u root -p < addition_to_sys.sql
+mysql -u root -p root
+CREATE USER 'monitor'@'%' IDENTIFIED BY 'monitorpassword';
+GRANT SELECT on sys.* to 'monitor'@'%';
+FLUSH PRIVILEGES;
+
+#akses dari luar
+CREATE USER 'user'@'%' IDENTIFIED BY 'userpassword';
+GRANT SELECT on classicmodels.* to 'user'@'%' IDENTIFIED BY 'userpassword';
+FLUSH PRIVILEGES;
