@@ -12,7 +12,7 @@ IP|Hostname|Task
 192.168.33.14|proxysql|ProxySQL
 
 #### Manager
-![Manager](ss/manager.png)
+![Manager](ss/manager.PNG)
 
 ##### Testing NDBCluster
 1. Pastikan status ndbd di datanode adalah running dan tabel menggunakan engine `ndbcluster`
@@ -22,11 +22,11 @@ IP|Hostname|Task
 ![image](ss/manager2.png)
 4. Hasil akses melalui servicenode:
 
-![image](ss/servicenode-access.png)
+![image](ss/servicenode-access.PNG)
     Sukses, telah dialihkan ke datanode ke-2
 
 #### ProxySQL
-![ProxySQL](ss/proxysql.png)
+![ProxySQL](ss/proxysql.PNG)
 
 #### Test akses dari HeidiSQL
-![HeidiSQL](ss/heidisql.png)
+![HeidiSQL](ss/heidisql.PNG)
