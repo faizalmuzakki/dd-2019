@@ -2,8 +2,8 @@
 ## 0511164000120 - Faizal Khilmi Muzakki
 
 ## Jump To
-1. [Tugas 1](#1-tugas-1-implementasi-mysql-cluster)
-2. [Tugas 2](#2-tugas-2-implementasi-partisi)
+1. [Tugas 1](#tugas-1---implementasi-mysql-cluster)
+2. [Tugas 2](#tugas-2---implementasi-partisi)
 
 ## Tugas 1 - Implementasi MySQL Cluster
 
