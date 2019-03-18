@@ -11,7 +11,7 @@ sudo dpkg -i proxysql_*
 rm proxysql_*
 
 sudo apt-get update
-sudo apt-get install mysql-client
+sudo apt-get install mysql-client -y
 
 sudo systemctl start proxysql
 systemctl status proxysql

@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
   (1..3).each do |i|
     config.vm.define "clusterdb#{i}" do |node|
       node.vm.hostname = "clusterdb#{i}"
-      node.vm.box = "bento/ubuntu-18.04"
+      node.vm.box = "bento/ubuntu-16.04"
       node.vm.network "private_network", ip: "192.168.33.1#{i}"
 
       # Opsional. Edit sesuai dengan nama network adapter di komputer
@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "proxysql" do |node|
     node.vm.hostname = "proxysql"
-    node.vm.box = "bento/ubuntu-18.04"
+    node.vm.box = "bento/ubuntu-16.04"
     node.vm.network "private_network", ip: "192.168.33.14"
 
     # Opsional. Edit sesuai dengan nama network adapter di komputer
