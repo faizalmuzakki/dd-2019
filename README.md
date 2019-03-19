@@ -68,25 +68,25 @@ Sukses, telah dialihkan ke datanode ke-2
     ![select_range](ss/select_range.PNG)
 
 ##### List Partition
-- contoh tabel "serverlogs" dan "lc"
+  - contoh tabel "serverlogs" dan "lc"
 
-  `CREATE TABLE serverlogs (serverid INT NOT NULL,logdata BLOB NOT NULL,created DATETIME NOT NULL)PARTITION BY LIST (serverid)(PARTITION server_east VALUES IN(1,43,65,12,56,73),PARTITION server_west VALUES IN(534,6422,196,956,22));`
+    `CREATE TABLE serverlogs (serverid INT NOT NULL,logdata BLOB NOT NULL,created DATETIME NOT NULL)PARTITION BY LIST (serverid)(PARTITION server_east VALUES IN(1,43,65,12,56,73),PARTITION server_west VALUES IN(534,6422,196,956,22));`
 
-  ![list_serverlogs](ss/list_serverlogs.PNG)
+    ![list_serverlogs](ss/list_serverlogs.PNG)
 
-  `CREATE TABLE lc (a INT NULL,b INT NULL)PARTITION BY LIST COLUMNS(a,b) (PARTITION p0 VALUES IN( (0,0), (NULL,NULL) ),PARTITION p1 VALUES IN( (0,1), (0,2), (0,3), (1,1), (1,2) ),PARTITION p2 VALUES IN( (1,0), (2,0), (2,1), (3,0), (3,1) ),PARTITION p3 VALUES IN( (1,3), (2,2), (2,3), (3,2), (3,3) ));`
+    `CREATE TABLE lc (a INT NULL,b INT NULL)PARTITION BY LIST COLUMNS(a,b) (PARTITION p0 VALUES IN( (0,0), (NULL,NULL) ),PARTITION p1 VALUES IN( (0,1), (0,2), (0,3), (1,1), (1,2) ),PARTITION p2 VALUES IN( (1,0), (2,0), (2,1), (3,0), (3,1) ),PARTITION p3 VALUES IN( (1,3), (2,2), (2,3), (3,2), (3,3) ));`
 
-  ![lc](ss/lc.PNG)
+    ![lc](ss/lc.PNG)
 
--  Jalankan contoh query untuk tabel "lc"
+  -  Jalankan contoh query untuk tabel "lc"
 
-  `INSERT INTO lc (a,b) VALUES (0,0), (NULL,NULL), (0,1), (0,2), (0,3), (1,1), (1,2), (1,0), (2,0), (2,1), (3,0), (3,1), (1,3), (2,2), (2,3), (3,2), (3,3);`
+    `INSERT INTO lc (a,b) VALUES (0,0), (NULL,NULL), (0,1), (0,2), (0,3), (1,1), (1,2), (1,0), (2,0), (2,1), (3,0), (3,1), (1,3), (2,2), (2,3), (3,2), (3,3);`
 
-  ![insert_lc](ss/insert_lc.PNG)
+    ![insert_lc](ss/insert_lc.PNG)
 
-  `SELECT *,'p0' FROM lc PARTITION (p0) UNION ALL SELECT *,'p1' FROM lc PARTITION (p1) UNION ALL SELECT *,'p2' FROM lc PARTITION (p2) UNION ALL SELECT *,'p3' FROM lc PARTITION (p3) ORDER BY a,b ASC;`
+    `SELECT *,'p0' FROM lc PARTITION (p0) UNION ALL SELECT *,'p1' FROM lc PARTITION (p1) UNION ALL SELECT *,'p2' FROM lc PARTITION (p2) UNION ALL SELECT *,'p3' FROM lc PARTITION (p3) ORDER BY a,b ASC;`
 
-  ![select_list](ss/select_list.PNG)
+    ![select_list](ss/select_list.PNG)
 
 ##### Hash Partition
 ##### Key Partition
