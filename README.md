@@ -82,22 +82,23 @@ Sukses, telah dialihkan ke datanode ke-2
 
   `INSERT INTO lc (a,b) VALUES (0,0), (NULL,NULL), (0,1), (0,2), (0,3), (1,1), (1,2), (1,0), (2,0), (2,1), (3,0), (3,1), (1,3), (2,2), (2,3), (3,2), (3,3);`
 
-    ![insert_lc](ss/insert_lc.PNG)
+  ![insert_lc](ss/insert_lc.PNG)
+
 
   `SELECT *,'p0' FROM lc PARTITION (p0) UNION ALL SELECT *,'p1' FROM lc PARTITION (p1) UNION ALL SELECT *,'p2' FROM lc PARTITION (p2) UNION ALL SELECT *,'p3' FROM lc PARTITION (p3) ORDER BY a,b ASC;`
 
-    ![select_list](ss/select_list.PNG)
+  ![select_list](ss/select_list.PNG)
 
 ##### Hash Partition
   - contoh tabel "serverlogs2" dan "hc"
 
   `CREATE TABLE serverlogs2 (serverid INT NOT NULL, logdata BLOB NOT NULL,created DATETIME NOT NULL) PARTITION BY HASH (serverid) PARTITIONS 10;`
 
-    ![hash_serverlog](ss/hash_serverlog.PNG)
+  ![hash_serverlog](ss/hash_serverlog.PNG)
 
-    `CREATE TABLE hc (a INT NULL,b INT NULL) PARTITION BY HASH (a) PARTITIONS 5;`
+  `CREATE TABLE hc (a INT NULL,b INT NULL) PARTITION BY HASH (a) PARTITIONS 5;`
 
-    ![hc](ss/hc.PNG)
+  ![hc](ss/hc.PNG)
 
   - Jalankan contoh query untuk tabel "hc"
 
@@ -114,11 +115,11 @@ Sukses, telah dialihkan ke datanode ke-2
 
   `CREATE TABLE serverlogs4 (serverid INT NOT NULL, logdata BLOB NOT NULL, created DATETIME NOT NULL, UNIQUE KEY (serverid)) PARTITION BY KEY() PARTITIONS 10;`
 
-    ![key_serverlog](ss/key_serverlog.PNG)
+  ![key_serverlog](ss/key_serverlog.PNG)
 
-    `CREATE TABLE kc (a INT NULL,b INT NULL,UNIQUE KEY (a)) PARTITION BY KEY(a) PARTITIONS 10;`
+  `CREATE TABLE kc (a INT NULL,b INT NULL,UNIQUE KEY (a)) PARTITION BY KEY(a) PARTITIONS 10;`
 
-    ![kc](ss/kc.PNG)
+  ![kc](ss/kc.PNG)
 
   - Jalankan contoh query untuk tabel "kc"
 
