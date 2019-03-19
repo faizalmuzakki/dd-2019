@@ -132,7 +132,31 @@ Sukses, telah dialihkan ke datanode ke-2
   ![select_kc](ss/select_kc.PNG)
 
 #### 3. Testing pada bagian "A Typical Use Case: Time Series Data"
+
+Dataset: [Ini](https://drive.google.com/file/d/0B2Ksz9hP3LtXRUppZHdhT1pBaWM/view)
+
 ##### Menguji SELECT
-##### Gunakan perintah EXPLAIN untuk melihat plan eksekusi query untuk masing-masing tabel
-##### Jalankan query benchmark untuk masing-masing tabel. Hasilnya adalah running time.
-##### Jalankan query delete (bagian BIG DELETE) dan tampilkan perbedaan running time-nya.
+
+- Gunakan perintah EXPLAIN untuk melihat plan eksekusi query untuk masing-masing tabel
+
+  `explain select * from measures;`
+  `explain select * from partitioned_measures;`
+
+  ![explain](ss/explain.PNG)
+
+- Jalankan query benchmark untuk masing-masing tabel. Hasilnya adalah running time.
+
+  `SELECT SQL_NO_CACHE COUNT(*) FROM time_series.measures
+  WHERE measure_timestamp >= '2016-01-01' AND DAYOFWEEK(measure_timestamp) = 1;`
+
+  `SELECT SQL_NO_CACHE COUNT(*) FROM time_series.partitioned_measures WHERE measure_timestamp >= '2016-01-01' AND DAYOFWEEK(measure_timestamp) = 1;`
+
+  ![benchmark](ss/benchmark.PNG)
+
+- Jalankan query delete (bagian BIG DELETE) dan tampilkan perbedaan running time-nya.
+
+  `DELETE FROM time_series.measures WHERE  measure_timestamp < '2016-01-01';`
+
+  `ALTER TABLE time_series.partitioned_measures DROP PARTITION prev_year_logs;`
+
+  ![big_delete](ss/big_delete.PNG)
