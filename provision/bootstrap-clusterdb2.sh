@@ -22,11 +22,18 @@ sudo dpkg -i mysql-cluster-community-data-node_7.6.9-1ubuntu16.04_amd64.deb
 sudo cp '/vagrant/config/datanode/my.cnf' '/etc/my.cnf'
 sudo mkdir -p /usr/local/mysql/data
 sudo ndbd
+
 sudo ufw allow from 192.168.33.11
 sudo ufw allow from 192.168.33.12
+sudo ufw allow from 192.168.33.14
+
 sudo pkill -f ndbd
 sudo cp '/vagrant/config/datanode/ndb_mgmd.service' '/etc/systemd/system/ndbd.service'
 sudo systemctl daemon-reload
 sudo systemctl enable ndbd
 sudo systemctl start ndbd
-sudo systemctl status ndbd
+# sudo systemctl status ndbd
+
+sudo ufw allow from 192.168.33.11
+sudo ufw allow from 192.168.33.12
+sudo ufw allow from 192.168.33.14

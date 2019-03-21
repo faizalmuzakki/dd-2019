@@ -33,3 +33,20 @@ IP|Hostname|Task
 192.168.33.12|clusterdb2|Datanode, servicenode
 192.168.33.13|clusterdb3|Datanode
 192.168.33.14|proxysql|ProxySQL, Wordpress Node
+
+![vagrant status](src/vagrant_status.PNG)
+
+### Install Wordpress
+- SSH ke proxysql
+    - `vagrant ssh proxysql`
+- Install apache dan php
+    - `sudo apt-get install -y apache2 php libapache2-mod-php php-mcrypt php-mysql`
+- Konfigurasi package wordpress
+    - `wget -c http://wordpress.org/latest.tar.gz`
+    - `tar -xzvf latest.tar.gz`
+    - `sudo mv wordpress/* /var/www/html/`
+- Set directory permission
+    - `sudo chown -R www-data:www-data /var/www/html/`
+    - `sudo chmod -R 755 /var/www/html/`
+- Restart apache
+    - `sudo systemctl restart apache2`

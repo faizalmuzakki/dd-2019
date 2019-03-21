@@ -22,14 +22,17 @@ sudo dpkg -i mysql-cluster-community-data-node_7.6.9-1ubuntu16.04_amd64.deb
 sudo cp '/vagrant/config/datanode/my.cnf' '/etc/my.cnf'
 sudo mkdir -p /usr/local/mysql/data
 sudo ndbd
+
 sudo ufw allow from 192.168.33.11
-sudo ufw allow from 192.168.33.12
+sudo ufw allow from 192.168.33.13
+sudo ufw allow from 192.168.33.14
+
 sudo pkill -f ndbd
 sudo cp '/vagrant/config/datanode/ndb_mgmd.service' '/etc/systemd/system/ndbd.service'
 sudo systemctl daemon-reload
 sudo systemctl enable ndbd
 sudo systemctl start ndbd
-sudo systemctl status ndbd
+# sudo systemctl status ndbd
 
 #configuring and starting mysql server & client
 wget https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster_7.6.9-1ubuntu16.04_amd64.deb-bundle.tar
@@ -44,20 +47,14 @@ sudo dpkg -i mysql-cluster-community-client_7.6.9-1ubuntu16.04_amd64.deb
 sudo dpkg -i mysql-client_7.6.9-1ubuntu16.04_amd64.deb
 sudo dpkg -i mysql-cluster-community-server_7.6.9-1ubuntu16.04_amd64.deb
 
+sudo debconf-set-selections <<< 'mysql-community-server mysql-community-server/root-pass password root'
+sudo debconf-set-selections <<< 'mysql-community-server mysql-community-server/re-root-pass password root'
+
 sudo dpkg -i mysql-server_7.6.9-1ubuntu16.04_amd64.deb
 sudo cp '/vagrant/config/servicenode/my.cnf' '/etc/mysql/my.cnf'
 sudo systemctl restart mysql
 sudo systemctl enable mysql
 
 #set proxysql
-curl -OL https://gist.github.com/lefred/77ddbde301c72535381ae7af9f968322/raw/5e40b03333a3c148b78aa348fd2cd5b5dbb36e4d/addition_to_sys.sql
-# mysql -u root -p < addition_to_sys.sql
-mysql -u root -proot
-CREATE USER 'monitor'@'%' IDENTIFIED BY 'monitorpassword';
-GRANT SELECT on sys.* to 'monitor'@'%';
-FLUSH PRIVILEGES;
-
-# akses dari luar
-CREATE USER 'user'@'%' IDENTIFIED BY 'userpassword';
-GRANT SELECT on classicmodels.* to 'user'@'%' IDENTIFIED BY 'userpassword';
-FLUSH PRIVILEGES;
+mysql -u root -proot < /vagrant/config/servicenode/addition_to_sys.sql
+mysql -u root -proot < /vagrant/config/servicenode/create_proxy_user.sql
