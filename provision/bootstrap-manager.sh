@@ -6,30 +6,19 @@ sudo apt-get update -y
 
 #configure cluster manager
 cd ~
-wget https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster-community-data-node_7.6.9-1ubuntu16.04_amd64.deb
-sudo apt update
-
-# dependency
-# wget http://archive.ubuntu.com/ubuntu/pool/main/p/perl/perl-base_5.22.1-9_amd64.deb
-# sudo dpkg -i perl-base_5.22.1-9_amd64.deb
-
-sudo apt install libclass-methodmaker-perl -y
-# sudo apt --fix-broken install -y
-# sudo apt install libclass-methodmaker-perl
-# sudo apt --fix-broken install -y
-# sudo apt install libclass-methodmaker-perl
-sudo dpkg -i mysql-cluster-community-data-node_7.6.9-1ubuntu16.04_amd64.deb
-sudo cp '/vagrant/config/datanode/my.cnf' '/etc/my.cnf'
-sudo mkdir -p /usr/local/mysql/data
-sudo ndbd
-sudo ufw allow from 192.168.33.11
-sudo ufw allow from 192.168.33.12
-sudo pkill -f ndbd
-sudo cp '/vagrant/config/datanode/ndb_mgmd.service' '/etc/systemd/system/ndbd.service'
+wget https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster-community-management-server_7.6.9-1ubuntu16.04_amd64.deb
+sudo dpkg -i mysql-cluster-community-management-server_7.6.9-1ubuntu16.04_amd64.deb
+sudo mkdir /var/lib/mysql-cluster
+sudo cp '/vagrant/config/ndb-manager/config.ini' '/var/lib/mysql-cluster/config.ini'
+sudo ndb_mgmd -f /var/lib/mysql-cluster/config.ini
+sudo pkill -f ndb_mgmd
+sudo cp '/vagrant/config/ndb-manager/ndb_mgmd.service' '/etc/systemd/system/ndb_mgmd.service'
 sudo systemctl daemon-reload
-sudo systemctl enable ndbd
-sudo systemctl start ndbd
-sudo systemctl status ndbd
+sudo systemctl enable ndb_mgmd
+sudo systemctl start ndb_mgmd
+sudo systemctl status ndb_mgmd
+sudo ufw allow from 192.168.33.12
+sudo ufw allow from 192.168.33.13
 
 #configuring and starting mysql server & client
 wget https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster_7.6.9-1ubuntu16.04_amd64.deb-bundle.tar
@@ -49,10 +38,13 @@ sudo cp '/vagrant/config/servicenode/my.cnf' '/etc/mysql/my.cnf'
 sudo systemctl restart mysql
 sudo systemctl enable mysql
 
-#set proxysql
+sudo cp '/vagrant/sample_db.sql' '~/sample_db.sql'
+mysql -u root -p root < sample_db.sql
+
+# set proxysql
 curl -OL https://gist.github.com/lefred/77ddbde301c72535381ae7af9f968322/raw/5e40b03333a3c148b78aa348fd2cd5b5dbb36e4d/addition_to_sys.sql
-# mysql -u root -p < addition_to_sys.sql
-mysql -u root -proot
+mysql -u root -p < addition_to_sys.sql
+mysql -u root -p root
 CREATE USER 'monitor'@'%' IDENTIFIED BY 'monitorpassword';
 GRANT SELECT on sys.* to 'monitor'@'%';
 FLUSH PRIVILEGES;

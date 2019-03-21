@@ -12,7 +12,7 @@
 #### Artitektur
 IP|Hostname|Task
 --|--------|----
-192.168.33.11|clusterdb1|Manager, servicenode
+192.168.33.11|manager|Manager, servicenode
 192.168.33.12|clusterdb2|Datanode, servicenode
 192.168.33.13|clusterdb3|Datanode
 192.168.33.14|proxysql|ProxySQL
