@@ -4,6 +4,8 @@
 - [Instruksi](#instruksi)
 - [Pengumpulan](#pengumpulan)
 - [Arsitektur](#arsitektur)
+- [Install Wordpress](#install-wordpress)
+- [Konfigurasi Wordpress](#konfigurasi-wordpress)
 
 ### INSTRUKSI
 1. Buatlah sebuah cluster MySQL menggunakan NDB Engine + 1 buah ProxySQL
