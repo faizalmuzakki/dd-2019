@@ -50,3 +50,42 @@ IP|Hostname|Task
     - `sudo chmod -R 755 /var/www/html/`
 - Restart apache
     - `sudo systemctl restart apache2`
+
+### Konfigurasi wordpress
+- ssh ke salah satu servicenode
+- masuk ke mysql
+  - `mysql -u root -p`
+  - password: root
+- membuat database untuk wordpress
+  - `create database wordpress`
+- membuat user untuk wordpress
+  - `CREATE USER 'wordpress'@'%' IDENTIFIED BY 'wordpress';`
+  - `GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'%';`
+  - `FLUSH PRIVILEGES;`
+
+user telah dibuat, selanjutnya buat user yang sama di proxysql.
+- ssh ke proxysql
+- masuk ke mysql
+  - `mysql -u root -p -h 127.0.0.1 -P 6032`
+  - password: password
+- jalankan perintah
+  - `INSERT INTO mysql_users(username, password, default_hostgroup) VALUES ('wordpress', 'wordpress', 2);`
+  - `LOAD MYSQL USERS TO RUNTIME;`
+  - `SAVE MYSQL USERS TO DISK;`
+
+langkah selanjutnya adalah menghubungkan aplikasi wordpress dengan database yang telah dibuat sebelumnya.
+- kunjungi ip address proxysql ([192.168.33.14](192.168.33.14)), akan muncul seperti gambar dibawah
+
+![welcome](src/welcome.jpg)
+
+- klik continue, akan muncul form konfigurasi database wordpress. Isi sesuai dengan konfigurasi yang telah dibuat sebelumnya, arahkan IP ke proxysql untuk memanfaatkan load balancer.
+
+![config_wordpress](src/config_wp.jpg)
+
+- klik submit, langkah selanjutnya adalah membuat user wordpress. isi sesuai keinginan anda, jangan sampai lupa. karena user ini akan digunakan untuk login admin wordpress.
+
+![config_wordpress_user](src/config_wp-user.jpg)
+
+- klik install wordpress, konfigurasi telah berhasil
+
+![home](src/home.jpg)

@@ -33,7 +33,3 @@ sudo systemctl daemon-reload
 sudo systemctl enable ndbd
 sudo systemctl start ndbd
 # sudo systemctl status ndbd
-
-sudo ufw allow from 192.168.33.11
-sudo ufw allow from 192.168.33.12
-sudo ufw allow from 192.168.33.14
