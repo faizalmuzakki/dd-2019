@@ -91,3 +91,35 @@ langkah selanjutnya adalah menghubungkan aplikasi wordpress dengan database yang
 - klik install wordpress, konfigurasi telah berhasil
 
 ![home](src/home.jpg)
+
+
+### Alter Semua Tabel di Database Wordpress Menjadi NDB Engine
+- ssh ke salah satu servicenode
+- masuk ke mysql, masuk ke database wordpress yang telah dibuat sebelumnya dan jalankan perintah:
+  - `ALTER TABLE wp_users ENGINE=NDB;`
+  - `ALTER TABLE wp_usermeta ENGINE=NDB;`
+  - `ALTER TABLE wp_term_taxonomy ENGINE=NDB;`
+  - `ALTER TABLE wp_term_relationships ENGINE=NDB;`
+  - `ALTER TABLE wp_terms ENGINE=NDB;`
+  - `ALTER TABLE wp_termmeta ENGINE=NDB;`
+  - `ALTER TABLE wp_posts ENGINE=NDB;`
+  - `ALTER TABLE wp_postmeta ENGINE=NDB;`
+  - `ALTER TABLE wp_options ENGINE=NDB;`
+  - `ALTER TABLE wp_links ENGINE=NDB;`
+  - `ALTER TABLE wp_comments ENGINE=NDB;`
+  - `ALTER TABLE wp_commentmeta ENGINE=NDB;`
+
+### Simulasi Fail Over
+- status datanode awal:
+
+![datanode_status](src/datanode_status.PNG)
+
+- shutdown datanode yang aktif (dalam screenshot, datanode dengan ip [192.168.33.13](192.168.33.13)) dengan menjalankan command (tanpa ssh) :
+    - `vagrant halt clusterdb2`
+- cek status datanode di manager:
+
+![datanode_status2](src/datanode_status2.PNG)
+
+- kunjungi ulang ip proxysql [192.168.33.14](192.168.33.14)
+
+![reload](src/reload.jpg)
