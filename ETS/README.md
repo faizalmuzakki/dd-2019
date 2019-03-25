@@ -4,8 +4,11 @@
 - [Instruksi](#instruksi)
 - [Pengumpulan](#pengumpulan)
 - [Arsitektur](#arsitektur)
-- [Install Wordpress](#install-wordpress)
 - [Konfigurasi Wordpress](#konfigurasi-wordpress)
+  - [Install](#install-wordpress)
+  - [Konfigurasi](#konfigurasi-wordpress)
+  - [Alter Table Wordpress](#alter-semua-tabel-di-database-wordpress-menjadi-ndb-engine)
+- [Simulasi Fail Over](#simulasi-fail-over)
 
 ### INSTRUKSI
 1. Buatlah sebuah cluster MySQL menggunakan NDB Engine + 1 buah ProxySQL
@@ -53,7 +56,7 @@ IP|Hostname|Task
 - Restart apache
     - `sudo systemctl restart apache2`
 
-### Konfigurasi wordpress
+#### Konfigurasi wordpress
 - ssh ke salah satu servicenode
 - masuk ke mysql
   - `mysql -u root -p`
@@ -93,7 +96,7 @@ langkah selanjutnya adalah menghubungkan aplikasi wordpress dengan database yang
 ![home](src/home.jpg)
 
 
-### Alter Semua Tabel di Database Wordpress Menjadi NDB Engine
+#### Alter Semua Tabel di Database Wordpress Menjadi NDB Engine
 - ssh ke salah satu servicenode
 - masuk ke mysql, masuk ke database wordpress yang telah dibuat sebelumnya dan jalankan perintah:
   - `ALTER TABLE wp_users ENGINE=NDB;`
