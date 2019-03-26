@@ -1,6 +1,6 @@
 # Tugas ETS
 
-### Jump To
+### Outline
 - [Instruksi](#instruksi)
 - [Pengumpulan](#pengumpulan)
 - [Arsitektur](#arsitektur)
@@ -9,6 +9,7 @@
   - [Konfigurasi](#konfigurasi-wordpress)
   - [Alter Table Wordpress](#alter-semua-tabel-di-database-wordpress-menjadi-ndb-engine)
 - [Simulasi Fail Over](#simulasi-fail-over)
+- [Pengetesan Menggunakan Jmeter](#pengetesan-menggunakan-jmeter)
 
 ### INSTRUKSI
 1. Buatlah sebuah cluster MySQL menggunakan NDB Engine + 1 buah ProxySQL
