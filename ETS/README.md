@@ -1,6 +1,6 @@
 # Tugas ETS
 
-## Jump To
+### Jump To
 - [Instruksi](#instruksi)
 - [Pengumpulan](#pengumpulan)
 - [Arsitektur](#arsitektur)
@@ -126,3 +126,37 @@ langkah selanjutnya adalah menghubungkan aplikasi wordpress dengan database yang
 - kunjungi ulang ip proxysql [192.168.33.14](192.168.33.14)
 
 ![reload](src/reload.jpg)
+
+### Pengetesan Menggunakan Jmeter
+
+- Aplikasi Jmeter dapat didownload [disini](https://jmeter.apache.org/download_jmeter.cgi)
+- Extract file yang telah di download
+- Run as administrator jmeter.bat yang ada di dalam folder bin (pastikan anda telah menginstall java)
+
+![jmeter](src/jmeter.PNG)
+
+- Buat thread group
+
+
+![thread_group](src/thread_group.PNG)
+
+- Buat HTTP request default
+
+![request_default](src/request_default.PNG)
+
+- Add HTTP Request
+
+![http_req](src/http_req.PNG)
+
+- Add Graph Result, dan View Result in Table
+
+![graph](src/graph.PNG)
+
+- Start
+- Graph Result
+
+![graph_result](src/graph_result.PNG)
+
+- Table Result
+
+![table_result](src/table_result.PNG)
