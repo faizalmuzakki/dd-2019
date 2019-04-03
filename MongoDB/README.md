@@ -21,5 +21,9 @@
     - Install mongoimport
     - Jalankan di terminal
         - `mongoimport --host <your_host>:27017 --db movies --type json --file ./movies.json --jsonArray --authenticationDatabase admin --ssl --username <your_username> --password <your_password>`
-        
+
 ![import](doc/import.PNG)
+
+### Akses data menggunakan MongoDB Compass dan tunjukkan bahwa data yang diimport berhasil dimasukkan.
+
+![import](doc/compass.png)
