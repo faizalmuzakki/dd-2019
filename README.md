@@ -22,7 +22,7 @@ IP|Hostname|Task
 
 #### Testing NDBCluster
 1. Pastikan status ndbd di datanode adalah running dan tabel menggunakan engine `ndbcluster`
-2. Di clusterdb2 (salah satu datanode) run command `systectl stop ndbd`
+2. Di clusterdb2 (salah satu datanode) run command `systemctl stop ndbd`
 3. Status node manager:
 
 ![image](ss/manager2.png)

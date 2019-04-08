@@ -63,7 +63,7 @@ IP|Hostname|Task
   - `mysql -u root -p`
   - password: root
 - membuat database untuk wordpress
-  - `create database wordpress`
+  - `create database wordpress;`
 - membuat user untuk wordpress
   - `CREATE USER 'wordpress'@'%' IDENTIFIED BY 'wordpress';`
   - `GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'%';`
@@ -72,7 +72,7 @@ IP|Hostname|Task
 user telah dibuat, selanjutnya buat user yang sama di proxysql.
 - ssh ke proxysql
 - masuk ke mysql
-  - `mysql -u root -p -h 127.0.0.1 -P 6032`
+  - `mysql -u admin -p -h 127.0.0.1 -P 6032`
   - password: password
 - jalankan perintah
   - `INSERT INTO mysql_users(username, password, default_hostgroup) VALUES ('wordpress', 'wordpress', 2);`

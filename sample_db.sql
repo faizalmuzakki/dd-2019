@@ -9,7 +9,7 @@ Version 3.1
 Version 3.0
 + changed DATETIME to DATE for some colunmns
 Version 2.0
-+ changed table type from MyISAM to ndbcluster
++ changed table type from MyISAM to NDB
 + added foreign keys for all tables
 *********************************************************************
 */
@@ -48,7 +48,7 @@ CREATE TABLE `customers` (
   PRIMARY KEY (`customerNumber`),
   KEY `salesRepEmployeeNumber` (`salesRepEmployeeNumber`),
   CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`salesRepEmployeeNumber`) REFERENCES `employees` (`employeeNumber`)
-) ENGINE=ndbcluster DEFAULT CHARSET=latin1;
+) ENGINE=NDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `customers` */
 
@@ -316,7 +316,7 @@ CREATE TABLE `employees` (
   KEY `officeCode` (`officeCode`),
   CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`reportsTo`) REFERENCES `employees` (`employeeNumber`),
   CONSTRAINT `employees_ibfk_2` FOREIGN KEY (`officeCode`) REFERENCES `offices` (`officeCode`)
-) ENGINE=ndbcluster DEFAULT CHARSET=latin1;
+) ENGINE=NDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `employees` */
 
@@ -383,7 +383,7 @@ CREATE TABLE `offices` (
   `postalCode` varchar(15) NOT NULL,
   `territory` varchar(10) NOT NULL,
   PRIMARY KEY (`officeCode`)
-) ENGINE=ndbcluster DEFAULT CHARSET=latin1;
+) ENGINE=NDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `offices` */
 
@@ -417,7 +417,7 @@ CREATE TABLE `orderdetails` (
   KEY `productCode` (`productCode`),
   CONSTRAINT `orderdetails_ibfk_1` FOREIGN KEY (`orderNumber`) REFERENCES `orders` (`orderNumber`),
   CONSTRAINT `orderdetails_ibfk_2` FOREIGN KEY (`productCode`) REFERENCES `products` (`productCode`)
-) ENGINE=ndbcluster DEFAULT CHARSET=latin1;
+) ENGINE=NDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `orderdetails` */
 
@@ -6430,7 +6430,7 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`orderNumber`),
   KEY `customerNumber` (`customerNumber`),
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customerNumber`) REFERENCES `customers` (`customerNumber`)
-) ENGINE=ndbcluster DEFAULT CHARSET=latin1;
+) ENGINE=NDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `orders` */
 
@@ -7099,7 +7099,7 @@ CREATE TABLE `payments` (
   `amount` decimal(10,2) NOT NULL,
   PRIMARY KEY (`customerNumber`,`checkNumber`),
   CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`customerNumber`) REFERENCES `customers` (`customerNumber`)
-) ENGINE=ndbcluster DEFAULT CHARSET=latin1;
+) ENGINE=NDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `payments` */
 
@@ -7661,7 +7661,7 @@ CREATE TABLE `productlines` (
   `htmlDescription` mediumtext,
   `image` mediumblob,
   PRIMARY KEY (`productLine`)
-) ENGINE=ndbcluster DEFAULT CHARSET=latin1;
+) ENGINE=NDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `productlines` */
 
@@ -7698,7 +7698,7 @@ CREATE TABLE `products` (
   PRIMARY KEY (`productCode`),
   KEY `productLine` (`productLine`),
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`productLine`) REFERENCES `productlines` (`productLine`)
-) ENGINE=ndbcluster DEFAULT CHARSET=latin1;
+) ENGINE=NDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `products` */
 
