@@ -2,7 +2,9 @@
 
 ## Outline
 1. [Konfigurasi Vagrant](#konfigurasi-vagrant)
-2. [Instalasi Oracle Java Virtual Machine](instalasi-oracle-java-virtual-machine)
+2. [Instalasi Oracle Java Virtual Machine](#instalasi-oracle-java-virtual-machine)
+3. [Instalasi Cassandra](#instalasi-cassandra)
+4. [Cek Koneksi Cluster](#cek-koneksi-cluster)
 
 ## Konfigurasi Vagrant
 Konfigurasi bisa dilihat di [sini](Vagrantfile)
@@ -31,4 +33,14 @@ Konfigurasi bisa dilihat di [sini](Vagrantfile)
     - `sudo apt-get update`
     - `sudo apt-get install cassandra`
 
-## Troubleshooting dan Menjalankan Cassandra
+    ![cassandra](ss/cassandra.png)
+
+## Cek Koneksi Cluster
+1. Mengecek status cluster
+    - `sudo nodetool status`
+
+    ![nodetool_status](ss/nodetool_status.png)
+
+    - `cqlsh`
+
+    ![cqlsh](ss/cqlsh.png)
