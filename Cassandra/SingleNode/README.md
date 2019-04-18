@@ -1,15 +1,61 @@
 # Instalasi Cassandra Single Node
 
 ## Outline
-1. [Konfigurasi Vagrant](#konfigurasi-vagrant)
-2. [Instalasi Oracle Java Virtual Machine](#instalasi-oracle-java-virtual-machine)
-3. [Instalasi Cassandra](#instalasi-cassandra)
-4. [Cek Koneksi Cluster](#cek-koneksi-cluster)
+1. [Detail Tugas](#detail-tugas)
+2. [Pengerjaan](#pengerjaan)
+  - [Perbedaan Cassandra dengan database NoSQL lain](#perbedaan-cassandra-dengan-database-nosql-lain)
+  - [Arsitektur Server](#arsitektur-server)
+  - [Instalasi](#instalasi)
+      - [Konfigurasi Vagrant](#konfigurasi-vagrant)
+      - [Instalasi Oracle Java Virtual Machine](#instalasi-oracle-java-virtual-machine)
+      - [Instalasi Cassandra](#instalasi-cassandra)
+      - [Cek Koneksi Cluster](#cek-koneksi-cluster)
+  - [Penjelasan Dataset](#penjelasan-dataset)
+  - [Import Dataset](#import-dataset)
+  - [CRUD data](#crud-data)
 
-## Konfigurasi Vagrant
-Konfigurasi bisa dilihat di [sini](Vagrantfile)
+## Detail Tugas
+1. Buatlah implementasi instalasi Cassandra single node & operasi CRUD yang dilakukan
+2. Pilih dataset dengan format CSV untuk diimport ke dalam Cassandra. Dataset dapat dicari dari:
+  - [Kaggle](kaggle.com)
+  - [awesomedata/awesome-public-datasets](https://github.com/awesomedata/awesome-public-datasets)
+  - atau sumber dataset lain yang kredibel
+  - untuk mencegah adanya mahasiswa yang menggunakan dataset yang sama, maka isikan dataset yang dipilih pada link spreadsheet terlampir.
+3. Lakukan import data CSV ke dalam Cassandra dan lakukan operasi CRUD ke dalam database Cassandra
 
-## Instalasi Oracle Java Virtual Machine
+### Pengumpulan
+1. Buatlah dokumentasi yang berisi:
+  - penjelasan mengenai apa itu database Cassandra dan apa perbedaannya dengan database relational dan database NoSQL lainnya.
+  - arsitektur server
+  - proses instalasi
+  - dataset pilihan dan penjelasan
+  - proses import dataset ke dalam Cassandra
+  - proses CRUD data di dalam database Cassandra
+  Dokumentasi tiap tahapan harus diberikan PENJELASAN dan SCREENSHOT
+2. Dokumentasi dikumpulkan di GitHub dalam bentuk MarkDown (.md).
+3. Pengumpulan dilakukan dengan cara menuliskan URL Github pada assignment ini.
+
+## Perbedaan Cassandra dengan database NoSQL Lain
+Cassandra adalah salah satu produk *open source database manager* dari Apache yang sangat *scalable* dan dirancang untuk mengelola data tak terstruktur dan berukuran masif. Cassandra dapat menghandle *load* aplikasi seperti [Instagram](instagram.com) yang tiap harinya terdapat kurang lebih 80 juta foto terunggah.
+
+#### Cassandra vs MongoDB
+Cassandra|MongoDB
+---|---
+Model data lebih terstruktur | Model data dapat bervariasi
+*Indexing* terbatas | Sangat mendukung *indexing*
+Menggunakan *multiple master* model menjadikan tingkat ketersediaan sangat tinggi|Menggunakan *master-slave* model, ketika master down diperlukan sekitar 10-40 detik pemindahan master. Dalam kondisi ini tidak dapat dilakukan *write* ke database.
+Mendukung *query language* | Tidak mengukung *query language*
+
+## Arsitektur Server
+IP|Hostname|Task
+--|--------|----
+192.168.33.11|cassandra1|servicenode, storage
+
+## Instalasi
+### Konfigurasi Vagrant
+Konfigurasi bisa dilihat di [sini](../Vagrantfile)
+
+### Instalasi Oracle Java Virtual Machine
 1. ssh ke node yang telah dibuat
     - `vagrant ssh cassandra1`
 2. jalankan perintah ini di terminal
@@ -20,7 +66,7 @@ Konfigurasi bisa dilihat di [sini](Vagrantfile)
 
     ![java](ss/java.png)
 
-## Instalasi Cassandra
+### Instalasi Cassandra
 - jalankan di terminal
     - `echo "deb http://www.apache.org/dist/cassandra/debian 22x main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list`
     - `echo "deb-src http://www.apache.org/dist/cassandra/debian 22x main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list`
@@ -35,7 +81,7 @@ Konfigurasi bisa dilihat di [sini](Vagrantfile)
 
     ![cassandra](ss/cassandra.png)
 
-## Cek Koneksi Cluster
+### Cek Koneksi Cluster
 1. Mengecek status cluster
     - `sudo nodetool status`
 
@@ -44,3 +90,15 @@ Konfigurasi bisa dilihat di [sini](Vagrantfile)
     - `cqlsh`
 
     ![cqlsh](ss/cqlsh.png)
+
+## Penjelasan Dataset
+Dataset: [FIFA 19 complete player dataset](https://www.kaggle.com/karangadiya/fifa19)
+
+Atribut detail dari setiap pemain yang telah teregistrasi dalam database edisi terbaru FIFA 19
+
+## Import Dataset
+1. ssh ke cassandra1
+2. unduh dataset:
+  - `wget `
+
+## CRUD Data
