@@ -134,7 +134,7 @@ Atribut detail dari setiap pemain yang telah teregistrasi dalam database edisi t
     Real_Face Boolean,
     Position text,
     Jersey_Number int,
-    Joined date,
+    Joined text,
     Loaned_From text,
     Contract_Valid_Until text,
     Height text,
@@ -295,5 +295,16 @@ Atribut detail dari setiap pemain yang telah teregistrasi dalam database edisi t
       Release_Clause
     ) FROM '/home/vagrant/data.csv' WITH DELIMITER = ',' AND HEADER = TRUE;`
 
-
 ## CRUD Data
+### Create
+- `insert into players(id,name,overall) values(0,'Cassandra',100);`
+![insert](ss/insert.png)
+### Read
+- `select * from players LIMIT 10;`
+![select](ss/select.png)
+### Update
+- `update players set name='Messiah' where id=158023;`
+![update](ss/update.png)
+### Delete
+- `delete from players where id=158023;`
+![delete](ss/delete.png)
