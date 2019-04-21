@@ -98,7 +98,19 @@ Atribut detail dari setiap pemain yang telah teregistrasi dalam database edisi t
 
 ## Import Dataset
 1. ssh ke cassandra1
-2. unduh dataset:
-  - `wget `
+2. unduh dataset
+  - `wget https://github.com/faizalmuzakki/dd-2019/raw/master/Cassandra/SingleNode/data.csv`
+3. `cqlsh` di terminal
+4. buat keyspace
+  - `CREATE KEYSPACE test
+    WITH REPLICATION = {
+      'class' : 'NetworkTopologyStrategy', 'datacenter1' : 1
+    };`
+  - penjelasan *replication class*
+  ![strategy](ss/strategy.png)
+5. `use test` di terminal
+6. buat tabel
+  - ``
+
 
 ## CRUD Data
