@@ -111,6 +111,7 @@ Atribut detail dari setiap pemain yang telah teregistrasi dalam database edisi t
 5. `use test` di terminal
 6. buat tabel
   - `CREATE TABLE players(
+    No int,
     ID int,
     Name text,
     Age int,
@@ -203,6 +204,7 @@ Atribut detail dari setiap pemain yang telah teregistrasi dalam database edisi t
   );`
 7. Import dataset
   - `COPY players(
+      No,
       ID,
       Name,
       Age,
