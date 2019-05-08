@@ -1,6 +1,6 @@
-sudo apt-get update
-sudo apt-get install build-essential tcl
-sudo apt-get install libjemalloc-dev  (Optional)
+sudo apt-get update -y
+sudo apt-get install build-essential tcl -y
+sudo apt-get install libjemalloc-dev -y # (Optional)
 curl -O http://download.redis.io/redis-stable.tar.gz
 tar xzvf redis-stable.tar.gz
 cd redis-stable
