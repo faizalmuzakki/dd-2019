@@ -1,0 +1,1 @@
+mysql -u root -proot --batch --skip-column-names --execute \ 'select concat("alter table ",TABLE_SCHEMA,".",TABLE_NAME," ENGINE=ndbcluster;") from information_schema.TABLES where TABLE_SCHEMA="wordpress"' | mysql -u root -proot
