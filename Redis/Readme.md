@@ -5,6 +5,9 @@
 - [Arsitektur](#arsitektur)
 - [Instalasi](#instalasi)
   - [Initial Setup](#initial-setup)
+  - [Konfigurasi Redis](#konfigurasi-redis)
+  - [Menjalankan Redis](#menjalankan-redis)
+- [Tes Failover](#failover-test)
 
 ### Arsitektur
 IP|Hostname|Task|Memory
@@ -65,7 +68,7 @@ IP|Hostname|Task|Memory
 Penjelasan:
 - Perbedaan di redis.conf pada 3 node adalah: slave node harus memiliki konfigurasi -> `slave of 192.1689.33.10 6379` yang berarti node slave merupakan slave instance dari node master (192.16.33.10)
 
-#### Menjalanakan Redis
+#### Menjalankan Redis
 - Jalankan di tiap node (Pastikan anda berada pada folder /home/user/redis-stable)
   - `src/redis-server redis.conf &
 src/redis-server sentinel.conf --sentinel &`
@@ -95,7 +98,7 @@ src/redis-server sentinel.conf --sentinel &`
   - Slave2
 ![demokey-slave2](img/demokey-slave2.png)
 
-#### Failover Test
+### Failover Test
 Dapat disimulasikan dengan cara (jalankan _command_ di master node):
 - `kill -9 <process id>`, atau
 - `redis-cli -p 6379 DEBUG sleep 30`, atau
