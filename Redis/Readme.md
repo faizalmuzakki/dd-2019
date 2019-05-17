@@ -67,8 +67,8 @@ Penjelasan:
 
 #### Menjalanakan Redis
 - Jalankan di tiap node (Pastikan anda berada pada folder /home/user/redis-stable)
-  - `cd src/ && redis-server ../redis.conf &
-cd src/ && redis-server ../sentinel.conf — sentinel &`
+  - `src/redis-server redis.conf &
+src/redis-server sentinel.conf --sentinel &`
 
 - Cek redis proses yang berjalan dengan cara
   - `ps -ef | grep redis`
@@ -82,4 +82,32 @@ cd src/ && redis-server ../sentinel.conf — sentinel &`
   - Slave1
 ![ping-slave1](img/ping-slave1.png)
   - Slave2
-![ping-master](img/ping-master.png)
+![ping-slave2](img/ping-slave2.png)
+
+- Cek status replikasi
+![replication_status](img/replication_status.png)
+
+- Test Redis
+  - Master
+![demokey-master](img/demokey-master.png)
+  - Slave1
+![demokey-slave1](img/demokey-slave1.png)
+  - Slave2
+![demokey-slave2](img/demokey-slave2.png)
+
+#### Failover Test
+Dapat disimulasikan dengan cara (jalankan _command_ di master node):
+- `kill -9 <process id>`, atau
+- `redis-cli -p 6379 DEBUG sleep 30`, atau
+- `redis-cli -p 6379 DEBUG SEGFAULT`
+
+Cek info replication di tiap node
+- Slave1
+![slave1-failover](img/slave1-failover.png)
+- Slave2
+![slave2-failover](img/slave2-failover.png)
+
+Dengan demikian menandakan master telah berpindah dari 192.168.33.10 (node master) ke 192.168.33.11 (node slave1)
+
+#### Referensi
+[Redis Sentinel — High Availability: Everything you need to know from DEV to PROD: Complete Guide](https://medium.com/@amila922/redis-sentinel-high-availability-everything-you-need-to-know-from-dev-to-prod-complete-guide-deb198e70ea6) oleh Amila Iddamalgoda
