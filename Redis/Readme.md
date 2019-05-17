@@ -88,7 +88,7 @@ src/redis-server sentinel.conf --sentinel &`
 ![ping-slave2](img/ping-slave2.png)
 
 - Cek status replikasi
-![replication_status](img/replication_status.png)
+![replication_status](img/replication-status.png)
 
 - Test Redis
   - Master
