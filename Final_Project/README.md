@@ -3,9 +3,9 @@
 
 ### Instruksi
 Dimohon untuk menyiapkan dokumentasi di GitHub yang berisi:
-1. [Arsitektur BDT Relasional](#arsitektur_bdt_relasional)
-2. [Arsitektur BDT Non Relasional](#arsitektur_bdt_non_relasional)
-3. [Deskripsi aplikasi](#desripsi_aplikasi)
+1. [Arsitektur BDT Relasional](#arsitektur-bdt-relasional)
+2. [Arsitektur BDT Non Relasional](#arsitektur-bdt-non-relasional)
+3. [Deskripsi aplikasi](#desripsi-aplikasi)
 
 ### Arsitektur BDT Relasional
 ![relational](img/relational.png)
