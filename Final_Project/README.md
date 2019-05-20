@@ -5,14 +5,28 @@
 Dimohon untuk menyiapkan dokumentasi di GitHub yang berisi:
 1. [Arsitektur BDT Relasional](#arsitektur-bdt-relasional)
 2. [Arsitektur BDT Non Relasional](#arsitektur-bdt-non-relasional)
-3. [Deskripsi aplikasi](#desripsi-aplikasi)
+3. [Deskripsi aplikasi](#deskripsi-aplikasi)
 
 ### Arsitektur BDT Relasional
 ![relational](img/relational.png)
+
+IP|Hostname|Role
+--|--|--
+192.168.33.11|manager|NDB Manager, Service Node
+192.168.33.12|clusterdb1|Service Node, Data Node
+192.168.33.13|clusterdb2|Data Node
+192.168.33.14|proxysql|ProxySQL
+
 Dokumentasi instalasi mysql cluster: [Link](../ETS)
 
 ### Arsitektur BDT Non Relasional
 ![non-relational](img/non-relational.png)
+
+IP|Hostname|Role
+--|--|--
+192.168.33.14|proxysql|Initial Redis Master
+192.168.33.15|redis1|Initial Redis Slave
+192.168.33.16|redis2|Initial Redis Slave
 Dokumentasi instalasi Redis: [Link](../Redis)
 
 ### Deskripsi aplikasi
