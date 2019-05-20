@@ -27,6 +27,7 @@ IP|Hostname|Role
 192.168.33.14|proxysql|Initial Redis Master
 192.168.33.15|redis1|Initial Redis Slave
 192.168.33.16|redis2|Initial Redis Slave
+
 Dokumentasi instalasi Redis: [Link](../Redis)
 
 ### Deskripsi aplikasi
